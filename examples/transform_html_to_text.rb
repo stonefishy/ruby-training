@@ -20,8 +20,9 @@ File.open(text_name, 'w') do |file|
 			in_header = false
 		end
 
+		esc_line = line.gsub!(/<[^>]+>/, '')
+
 		file.write line
-		
 		break if /<\/body/ =~ line
 	end
 end
