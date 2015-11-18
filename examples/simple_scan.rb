@@ -5,10 +5,12 @@ count = 0
 File.open(file_name) do |file|
 	file.each_line do |line| 
 		if line =~ pattern
-			print line
 			line.scan(pattern) do |scan|
 				count +=1 if scan =~ pattern
 			end
+			print line.gsub(pattern) { |str|
+				"<<#{str}>>"
+			}
 		end
 	end
 	puts "count: #{count}"		
